@@ -1,2 +1,4 @@
-import ApiRequest from './axios/index';
+import ApiRequest from './axios';
+
+export * from './redux';
 export { ApiRequest };

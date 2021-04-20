@@ -3,16 +3,14 @@ import appConfig from './constant';
 export const config = appConfig;
 
 interface BaseUrl {
-  customer?: any;
-  auth?: any;
+  movie?: any;
 }
 
 const baseUrl: BaseUrl = {
-  customer: {
-    login: `${config.url.api}/customer/login`,
-  },
-  auth: {
-    refresh: `${config.url.api}/auth/refresh`,
+  movie: {
+    list: `${config.url.api}/movie-api/movie`,
+    detail: `${config.url.api}/movie-api/movie/view`,
+    createTicket: `${config.url.api}/movie-api/ticket/create`,
   },
 };
 
