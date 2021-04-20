@@ -1,6 +1,6 @@
 import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
-import { ChooseTime, Splash, TicketConfirm } from '../screens';
+import { ChooseTime, MyTicket, Splash, TicketConfirm } from '../screens';
 import MainTab from './main';
 
 export type ScreenParamList = {
@@ -8,11 +8,12 @@ export type ScreenParamList = {
   ChooseTime: undefined;
   TicketConfirm: undefined;
   MainTab: undefined;
+  MyTicket: undefined;
 };
 const Stack = createStackNavigator<ScreenParamList>();
 
 const Router = () => (
-  <Stack.Navigator initialRouteName="TicketConfirm">
+  <Stack.Navigator initialRouteName="MyTicket">
     <Stack.Screen
       name="Splash"
       component={Splash}
@@ -40,6 +41,14 @@ const Router = () => (
     <Stack.Screen
       name="TicketConfirm"
       component={TicketConfirm}
+      options={{
+        headerShown: false,
+        cardStyleInterpolator: CardStyleInterpolators.forRevealFromBottomAndroid,
+      }}
+    />
+    <Stack.Screen
+      name="MyTicket"
+      component={MyTicket}
       options={{
         headerShown: false,
         cardStyleInterpolator: CardStyleInterpolators.forRevealFromBottomAndroid,
