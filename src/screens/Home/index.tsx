@@ -1,4 +1,5 @@
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { BoxContainer, CardMovie, Gap, Header } from '../../components';
@@ -6,6 +7,7 @@ import { FONT_MEDIUM } from '../../theme';
 
 const Home = () => {
   const tabBarHeight = useBottomTabBarHeight();
+  const navigation = useNavigation();
   return (
     <BoxContainer>
       <Header title="MOVIEQUE" />
@@ -20,6 +22,7 @@ const Home = () => {
             with humanity caught in the balance."
           rated="18+"
           time="1h 38m"
+          onPress={() => navigation.navigate('ChooseTime')}
         />
         <Gap height={10} />
         <CardMovie

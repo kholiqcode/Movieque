@@ -1,10 +1,18 @@
 import React from 'react';
-import { StyleSheet, Text, TextStyle, TouchableOpacity, ViewStyle } from 'react-native';
+import { StyleSheet, Text, TextStyle, TouchableOpacity } from 'react-native';
 import { color, FONT_BOLD } from '../../../theme';
 
-const Button: React.FC<{ text?: string }> = ({ text }) => {
+const Button: React.FC<{
+  text?: string;
+  onPress?: any;
+  disabled?: any;
+}> = ({ text, onPress, disabled }) => {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity
+      style={{ ...styles.container(disabled) }}
+      disabled={disabled}
+      onPress={onPress}
+    >
       <Text style={styles.txtButton}>{text}</Text>
     </TouchableOpacity>
   );
@@ -13,20 +21,22 @@ const Button: React.FC<{ text?: string }> = ({ text }) => {
 export default Button;
 
 type Style = {
-  container: ViewStyle;
+  container: any;
   txtButton: TextStyle;
 };
 
 const styles = StyleSheet.create<Style>({
-  container: {
-    backgroundColor: color.primary,
+  container: (disabled?: Boolean) => ({
+    backgroundColor: disabled ? color.dim : color.primary,
     paddingHorizontal: 20,
     paddingVertical: 8,
     borderRadius: 8,
-    maxWidth: '55%',
-  },
+    alignItems: 'center',
+    justifyContent: 'center',
+  }),
   txtButton: {
     ...FONT_BOLD(16),
     color: color.white,
+    textAlignVertical: 'center',
   },
 });
