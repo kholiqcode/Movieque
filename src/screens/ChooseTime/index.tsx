@@ -27,7 +27,7 @@ const ChooseTime2 = () => {
   return (
     <BoxContainer>
       {/* Section Header */}
-      <Header title="MOVIEQUE" iconLeft="arrow-left" onPress={() => navigation.goBack()} />
+      <Header title="CHOOSE TIME" iconLeft="arrow-left" onPress={() => navigation.goBack()} />
       {/* Section Info */}
       <View style={{ flexDirection: 'row', flex: 1 }}>
         <View style={{ flex: 1, justifyContent: 'center' }}>

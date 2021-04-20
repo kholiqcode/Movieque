@@ -1,4 +1,5 @@
 import ChooseTime from './ChooseTime';
 import Home from './Home';
 import Splash from './Splash';
-export { Splash, Home, ChooseTime };
+import TicketConfirm from './TicketConfirm';
+export { Splash, Home, ChooseTime, TicketConfirm };
