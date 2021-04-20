@@ -10,11 +10,11 @@ import {
 export const apiInstance = axios.create({
   baseURL: '',
   timeout: 60000,
-  validateStatus: (status: number) => status >= 200 && status < 300,
+  validateStatus: (status: any) => status >= 200 && status < 300,
 });
 
 class ApiRequest {
-  static request = async (method: Method = 'GET', route: string = '', payload: any = {}) => {
+  static request = async (method: any = 'GET', route: any = '', payload: any = {}) => {
     const path = getPath(payload.path);
     const params = createUrlParamFromObj(payload.params);
     const customUrl = getCustomUrl(payload.url);
@@ -23,7 +23,7 @@ class ApiRequest {
     const headers = createHeader(payload.headers, baseHeaders);
     const url = customUrl.length > 0 ? customUrl : route + path + params;
     const data = payload.body ? payload.body : {};
-    const requestObj: AxiosRequestConfig = { url, headers, method, data };
+    const requestObj: any = { url, headers, method, data };
 
     try {
       const response = await apiInstance.request(requestObj);

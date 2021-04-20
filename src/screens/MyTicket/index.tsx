@@ -1,27 +1,27 @@
 import Barcode from '@kichiyaki/react-native-barcode-generator';
 import { useNavigation } from '@react-navigation/native';
+import moment from 'moment';
 import React from 'react';
-import { Dimensions, Image, StyleSheet, Text, View } from 'react-native';
+import { memo } from 'react';
+import { Dimensions, Image, Route, StyleSheet, Text, View } from 'react-native';
 import { BoxContainer, Gap, Header } from '../../components';
 import { FONT_BOLD, FONT_MEDIUM } from '../../theme';
 import { color } from '../../theme/';
 
-const MyTicket = () => {
+const MyTicket: React.FC<{ route: Route }> = ({ route }) => {
   const navigation = useNavigation();
+  const { title, ticketCode, studio } = route.params;
   return (
     <BoxContainer>
       <Header title="MOVIEQUE" iconLeft="arrow-left" onPress={() => navigation.goBack()} />
-      <View style={{ flex: 1, justifyContent: 'center' }}>
-        <View style={{ justifyContent: 'space-around', alignItems: 'center' }}>
+      <View style={styles.contentWrapper}>
+        <View style={styles.sectionMovie}>
           <Text style={{ ...FONT_BOLD(24) }} numberOfLines={2}>
-            Godzilla vs. Kong
+            {title}
           </Text>
           <Gap height={20} />
           <Image
-            style={{
-              width: 100,
-              height: 150,
-            }}
+            style={styles.imageThumb}
             source={{
               uri: 'https://i.pinimg.com/originals/09/b4/76/09b47611e6f90577693910b85f2423f4.jpg',
             }}
@@ -32,15 +32,15 @@ const MyTicket = () => {
           </Text>
           <Gap height={10} />
           <Text style={{ ...FONT_BOLD(20) }} numberOfLines={2}>
-            CINEMA A6
+            {studio}
           </Text>
           <Gap height={16} />
           <Text style={{ ...FONT_BOLD(16) }} numberOfLines={2}>
-            FRIDAY, 20 June 2021
+            {moment().format('dddd, DD MMMM YYYY')}
           </Text>
           <Gap height={16} />
           <Text style={{ ...FONT_BOLD(16) }} numberOfLines={2}>
-            7:30 PM
+            {moment().format('LT')}
           </Text>
         </View>
         <Gap height={32} />
@@ -49,11 +49,11 @@ const MyTicket = () => {
             Booking Code
           </Text>
           <Text style={{ ...FONT_MEDIUM(16) }} numberOfLines={2}>
-            091821912301
+            {ticketCode}
           </Text>
           <Barcode
             format="CODE128B"
-            value="0000002021954Q"
+            value={ticketCode}
             maxWidth={(Dimensions.get('window').width * 2) / 3}
             height={70}
             style={{ backgroundColor: 'transparent' }}
@@ -64,6 +64,13 @@ const MyTicket = () => {
   );
 };
 
-export default MyTicket;
+export default memo(MyTicket);
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  contentWrapper: { flex: 1, justifyContent: 'center' },
+  sectionMovie: { justifyContent: 'space-around', alignItems: 'center' },
+  imageThumb: {
+    width: 100,
+    height: 150,
+  },
+});

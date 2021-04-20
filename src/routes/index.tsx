@@ -13,7 +13,7 @@ export type ScreenParamList = {
 const Stack = createStackNavigator<ScreenParamList>();
 
 const Router = () => (
-  <Stack.Navigator initialRouteName="MyTicket">
+  <Stack.Navigator initialRouteName="Splash">
     <Stack.Screen
       name="Splash"
       component={Splash}
