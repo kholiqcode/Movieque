@@ -1,9 +1,9 @@
 import {
   BLACK,
   DARK,
+  GRAY_DARK,
   GRAY_LIGHT,
   GRAY_MEDIUM,
-  GREEN_DARK,
   PRIMARY,
   RED,
   SECONDARY,
@@ -78,6 +78,11 @@ export const color = {
    * GrayLight
    */
   grayLight: GRAY_LIGHT,
+
+  /**
+   * GrayLight
+   */
+  grayDark: GRAY_DARK,
 
   /**
    * DarkLight

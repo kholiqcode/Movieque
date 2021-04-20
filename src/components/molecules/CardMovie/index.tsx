@@ -4,12 +4,13 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import { color, FONT_BOLD, FONT_REGULAR } from '../../../theme';
 import { Button, Gap } from '../../atoms';
 
-const CardMovie: React.FC<{ title?: string; desc?: string; rated?: string; time?: string }> = ({
-  title,
-  desc,
-  rated,
-  time,
-}) => {
+const CardMovie: React.FC<{
+  title?: string;
+  desc?: string;
+  rated?: string;
+  time?: string;
+  onPress?: any;
+}> = ({ title, desc, rated, time, onPress }) => {
   return (
     <View style={styles.container}>
       <View style={styles.movieWrapper}>
@@ -43,7 +44,7 @@ const CardMovie: React.FC<{ title?: string; desc?: string; rated?: string; time?
           <Gap width={4} />
           <Text style={{ ...FONT_BOLD(14) }}>{time}</Text>
         </View>
-        <Button text="BOOK TICKET" />
+        <Button text="BOOK TICKET" onPress={onPress} />
       </View>
     </View>
   );
