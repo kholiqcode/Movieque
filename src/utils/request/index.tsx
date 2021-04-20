@@ -1,4 +1,4 @@
-export const getPath = (path: String = '') => (path ? `/${path}` : '');
+export const getPath = (path: any = '') => (path ? `/${path}` : '');
 
 export const createUrlParamFromObj = (params: any = null) => {
   if (!params) return '';
@@ -7,9 +7,9 @@ export const createUrlParamFromObj = (params: any = null) => {
   return `?${result.join('&')}`;
 };
 
-export const getCustomUrl = (url: string = '') => url;
+export const getCustomUrl = (url: any = '') => url;
 
-export const getContentType = (type: string = '') => {
+export const getContentType = (type: any = '') => {
   switch (type) {
     case 'form-data':
       return 'multipart/form-data';

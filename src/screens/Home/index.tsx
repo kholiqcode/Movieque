@@ -12,22 +12,19 @@ const Home = () => {
   const tabBarHeight = useBottomTabBarHeight();
   const navigation = useNavigation();
   const { movies } = useSelector((state: any) => state.movieReducer);
+  const { isLoading } = useSelector((state: any) => state.globalReducer);
   const mounted = useRef(false);
-  const [refresh, setRefresh] = useState(false);
 
-  const _handleGetMovie = async () => {
-    setRefresh(true);
+  const _handleGetMovies = async () => {
     try {
       await getMovies();
-      setRefresh(false);
     } catch (error) {
-      setRefresh(false);
     }
   };
 
   useLayoutEffect(() => {
     mounted.current = true;
-    _handleGetMovie();
+    _handleGetMovies();
     return () => {
       mounted.current = false;
     };
@@ -36,8 +33,8 @@ const Home = () => {
     <BoxContainer>
       <Header title="MOVIEQUE" />
       <FlatList
-        onRefresh={() => _handleGetMovie()}
-        refreshing={refresh}
+        onRefresh={() => _handleGetMovies()}
+        refreshing={isLoading}
         keyboardDismissMode="interactive"
         showsVerticalScrollIndicator={false}
         data={movies}

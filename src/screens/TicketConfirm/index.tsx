@@ -1,19 +1,23 @@
 import { useNavigation } from '@react-navigation/native';
+import moment from 'moment';
 import React from 'react';
+import { memo } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
+import { useSelector } from 'react-redux';
 import { BoxContainer, Button, Gap, Header } from '../../components';
 import { FONT_BOLD } from '../../theme';
 import { color } from '../../theme/color/index';
 
 const TicketConfirm = () => {
   const navigation = useNavigation();
+  const { booking } = useSelector((state: any) => state.bookingReducer);
   return (
     <BoxContainer>
       <Header title="MOVIEQUE" iconLeft="arrow-left" onPress={() => navigation.goBack()} />
       <View style={{ flex: 1, justifyContent: 'center' }}>
         <View style={{ justifyContent: 'space-around', alignItems: 'center' }}>
           <Text style={{ ...FONT_BOLD(24) }} numberOfLines={2}>
-            Godzilla vs. Kong
+            {booking?.title}
           </Text>
           <Gap height={20} />
           <Image
@@ -31,26 +35,26 @@ const TicketConfirm = () => {
           </Text>
           <Gap height={10} />
           <Text style={{ ...FONT_BOLD(20) }} numberOfLines={2}>
-            CINEMA A6
+            {booking?.studio}
           </Text>
           <Gap height={16} />
           <Text style={{ ...FONT_BOLD(16) }} numberOfLines={2}>
-            FRIDAY, 20 June 2021
+            {moment().format('dddd, DD MMMM YYYY')}
           </Text>
           <Gap height={16} />
           <Text style={{ ...FONT_BOLD(16) }} numberOfLines={2}>
-            7:30 PM
+            {moment().format('LT')}
           </Text>
         </View>
         <Gap height={32} />
         <View style={{ paddingHorizontal: 50 }}>
-          <Button text="CONFIRM" />
+          <Button text="CONFIRM" onPress={() => navigation.navigate('MyTicket', booking)} />
         </View>
       </View>
     </BoxContainer>
   );
 };
 
-export default TicketConfirm;
+export default memo(TicketConfirm);
 
 const styles = StyleSheet.create({});

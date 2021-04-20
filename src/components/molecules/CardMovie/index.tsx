@@ -8,7 +8,7 @@ const CardMovie: React.FC<{
   title?: string;
   desc?: string;
   rated?: string;
-  time?: string;
+  time?: any;
   onPress?: any;
 }> = ({ title, desc, rated, time, onPress }) => {
   return (

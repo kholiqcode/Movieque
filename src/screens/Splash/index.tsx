@@ -1,15 +1,17 @@
-import React from 'react';
+import { useNavigation } from '@react-navigation/native';
+import React, { useEffect } from 'react';
 import { Animated, Image, Text } from 'react-native';
 import { ILLogo } from '../../assets';
 import { BoxContainer } from '../../components';
 import styles from './styles';
 
 const Splash = () => {
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     navigation.replace('SignIn');
-  //   }, 3000);
-  // }, []);
+  const navigation = useNavigation<any>();
+  useEffect(() => {
+    setTimeout(() => {
+      navigation.replace('MainTab');
+    }, 3000);
+  }, []);
   return (
     <BoxContainer style={{ ...styles.container }}>
       <Image style={styles.imageAppLogo} source={ILLogo} />

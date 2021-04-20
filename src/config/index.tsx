@@ -7,11 +7,11 @@ interface API {
 }
 
 const API: API = {};
-// Customer
+
 API.movie = {
   list: ApiRequest.get(baseUrl?.movie?.list),
   detail: ApiRequest.get(baseUrl?.movie?.detail),
-  createTicket: ApiRequest.get(baseUrl?.movie?.createTicket),
+  createTicket: ApiRequest.post(baseUrl?.movie?.createTicket),
 };
 
 export { API, constant, url };
